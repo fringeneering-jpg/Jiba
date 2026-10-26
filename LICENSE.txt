@@ -1,0 +1,18 @@
+﻿DUAL LICENSE AGREEMENT — JIBA ORBITAL STATION-KEEPING ENGINE
+Copyright (c) 2026 Jaden John Allison (Fringeneering). All Rights Reserved.
+
+This software ("Jiba") is dual-licensed under:
+
+1. COMMERCIAL LICENSE (FOR PROPRIETARY & FLIGHT OPERATIONS USE):
+   Any commercial entity, satellite operator, mission-control provider, or defense contractor
+   wishing to integrate Jiba into closed-source flight software, ground-station control loops,
+   or cloud Space Situational Awareness (SSA) services without disclosing their proprietary
+   source code must obtain a paid Commercial License from Jaden John Allison (Fringeneering).
+
+2. OPEN-SOURCE EVALUATION LICENSE (GNU AGPLv3):
+   For academic, educational, and open-source evaluation, this program is free software:
+   you can redistribute it and/or modify it under the terms of the GNU Affero General Public
+   License as published by the Free Software Foundation, either version 3 of the License,
+   or (at your option) any later version. Under AGPLv3 Section 13, running this software
+   over a network or inside a commercial service requires making the complete source code
+   of the entire interacting system publicly available unless a Commercial License is held.

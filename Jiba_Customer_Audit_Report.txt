@@ -1,0 +1,18 @@
+============================================================================================================================
+   JIBA COMMERCIAL ORBIT AUDIT — DIRECT NORAD TLE TELEMETRY & STATION-KEEPING ANALYSIS
+   Prepared by: Jaden Allison (Fringeneering) | Engine: Jiba v0.1 (Dual License AGPLv3 / Commercial)
+   Governing Physics: Phase Wave Cosmology (ILRS alpha=2.635, beta=4.445, Anderson Constant V_A=14.6644 mm/s)
+============================================================================================================================
+Satellite Name (NORAD ID)          |  Alt (km) | Inc (deg) |  Noon-Wake Dip |  GM Bias (ppb) |   Anderson Kick
+----------------------------------------------------------------------------------------------------------------------------
+ISS (ZARYA) - LEO Crew Sta (#25544) |     417.3 |    51.64d |      -116.68 m |     +0.103 ppb |    +0.0126 mm/s
+STARLINK-30142 - Commercia (#57321) |     547.2 |    53.16d |      -111.00 m |     +0.107 ppb |    +0.0025 mm/s
+STARLETTE - ILRS Geodetic  (#07646) |     955.8 |    49.82d |       -95.44 m |     +0.120 ppb |    +0.2764 mm/s
+LAGEOS-1 - ILRS MEO Anchor (#08820) |    5893.1 |   109.84d |       -24.58 m |     +0.337 ppb |    +0.0061 mm/s
+----------------------------------------------------------------------------------------------------------------------------
+KEY OPERATIONAL DELIVERABLES FOR SATELLITE OPERATOR:
+  1. ZERO-FUEL WAVE SURFING : Strips the elastic Noon-to-Midnight dipole wave (alpha=2.635) from thruster deadbands.
+  2. MIDNIGHT WAKE BURNS    : Schedules station-keeping maneuvers at 180-deg Solar Midnight (-27.6% strain impedance).
+  3. ANDERSON BURN TARGETING: Pre-corrects non-orbital/eccentric maneuvers using V_A = 14.6644 mm/s (beta=4.445).
+  4. UNMASKED 1/r^2 GRAVITY : Removes the altitude-dependent a_entropy*r^2 bias baked into standard IERS GM.
+============================================================================================================================
