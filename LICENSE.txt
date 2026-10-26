@@ -1,18 +1,19 @@
-﻿DUAL LICENSE AGREEMENT — JIBA ORBITAL STATION-KEEPING ENGINE
+﻿DUAL LICENSE & EVALUATION AGREEMENT — JIBA ORBITAL STATION-KEEPING ENGINE
 Copyright (c) 2026 Jaden John Allison (Fringeneering). All Rights Reserved.
 
-This software ("Jiba") is dual-licensed under:
+1. FREE FOR STUDENTS & ENTERPRISE BENCHMARK COMPARISON:
+   This software suite is free for students, academic researchers, and commercial aerospace
+   enterprises for the purpose of evaluating and comparing Jiba's station-keeping propellant
+   savings and orbit-prediction accuracy against their current station-keeping costs.
 
-1. COMMERCIAL LICENSE (FOR PROPRIETARY & FLIGHT OPERATIONS USE):
-   Any commercial entity, satellite operator, mission-control provider, or defense contractor
-   wishing to integrate Jiba into closed-source flight software, ground-station control loops,
-   or cloud Space Situational Awareness (SSA) services without disclosing their proprietary
-   source code must obtain a paid Commercial License from Jaden John Allison (Fringeneering).
+2. COMMERCIAL TELEMETRY DATA OFFERS (UNDERLYING PHYSICS STRICTLY RETAINED):
+   Active operational use in commercial flight software, ground-station control loops, or
+   Space Situational Awareness (SSA) platforms is prohibited without a commercial agreement.
+   Fringeneering is currently fielding offers strictly for the purchase or licensing of the
+   Jiba telemetry data and station-keeping correction outputs only. No rights, title, or
+   ownership in the underlying Phase Wave Cosmology (PWC) physical theory or foundational
+   equations are offered, transferred, or sold under any circumstances.
 
-2. OPEN-SOURCE EVALUATION LICENSE (GNU AGPLv3):
-   For academic, educational, and open-source evaluation, this program is free software:
-   you can redistribute it and/or modify it under the terms of the GNU Affero General Public
-   License as published by the Free Software Foundation, either version 3 of the License,
-   or (at your option) any later version. Under AGPLv3 Section 13, running this software
-   over a network or inside a commercial service requires making the complete source code
-   of the entire interacting system publicly available unless a Commercial License is held.
+3. OPEN-SOURCE EVALUATION LICENSE (GNU AGPLv3):
+   For non-commercial student and academic use, this program is licensed under the GNU
+   Affero General Public License v3.0 (AGPLv3).
