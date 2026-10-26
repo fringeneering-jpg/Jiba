@@ -3,7 +3,7 @@
 scripts = [
     "step1_fuel_saver_proof.py",
     "step3_live_telemetry_demo.py",
-    "step4_tle_customer_audit.py",
+    "step4_tle_customer_audit.py", "step5_7day_blind_ilrs_benchmark.py",
 ]
 
 print("=" * 90)
@@ -26,3 +26,4 @@ print("  [PASS] Legal Protection: LICENSE.txt (Dual AGPLv3 / Commercial)")
 print("=" * 90)
 print("   ALL JIBA COMMERCIAL MODULES VERIFIED (EXIT 0)")
 print("=" * 90)
+
