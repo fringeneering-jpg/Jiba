@@ -48,5 +48,6 @@ Run the complete verification and commercial audit suite with a single command:
 * **Free for Enterprise Benchmarking:** Satellite operators, mission-control centers, and aerospace enterprises are invited to run this suite free of charge to benchmark `Jiba` directly against their current station-keeping propellant costs and 7-day tracking residuals.
 * **Commercial Offers (Telemetry Data Only — Underlying Physics Retained):** Over the next month, Fringeneering will be fielding commercial offers strictly for the purchase/licensing of the **station-keeping telemetry data and orbital correction outputs only**. Operational deployment in commercial flight loops requires a commercial agreement. **The underlying Phase Wave Cosmology (PWC) physical framework and foundational equations remain 100% the exclusive intellectual property of Jaden John Allison (Fringeneering) and are not for sale.**
 
-* **Contact:** Jaden Allison — Fringeneering (Western Australia)
+* **Contact:** Jaden Allison — Fringeneering (Western Australia) | **Email:** fringeneering@gmail.com
 * **GitHub:** https://github.com/fringeneering-jpg/Jiba
+

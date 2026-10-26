@@ -17,3 +17,5 @@ Copyright (c) 2026 Jaden John Allison (Fringeneering). All Rights Reserved.
 3. OPEN-SOURCE EVALUATION LICENSE (GNU AGPLv3):
    For non-commercial student and academic use, this program is licensed under the GNU
    Affero General Public License v3.0 (AGPLv3).
+
+Commercial Telemetry Inquiries: Jaden John Allison (Fringeneering) — fringeneering@gmail.com
