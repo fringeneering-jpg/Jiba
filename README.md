@@ -14,6 +14,16 @@ zero: the satellite trims WITH the medium at the moment the field is helping
 (the midnight wake pocket, the sun-south low-drift window) instead of fighting
 it with thrusters. **The lifetime satellite: the fuel cap on the fleet comes off.**
 
+**THE POSSIBILITY (the option the license includes):** the 11.86 m precision
+makes a µN-class photon sail sufficient as the *only* station-keeping actuator.
+The sail has one control — its angle to the Sun — and Jiba's trim schedule
+tells it precisely how far to tack, and when, so the integrated photon pressure
+delivers exactly the correction owed. No thrusters, no mass flow: the
+station-keeping capability never expires, and the asset stays on station,
+propellant-free, for its entire hardware life. The corrections are the product
+you buy today; **the propellant-free lifetime fleet is the roadmap that comes
+with it.**
+
 **REVISION 3 (2026-10-28):**
 1. **The wake-phase trim schedule** — the licensed output that makes a µN-class
    solar sail sufficient: the sail fires at the field's optimal phases, not
