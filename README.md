@@ -45,6 +45,24 @@ Run the complete verification and commercial audit suite with a single command:
 
     python run_jiba_suite.py
 
+### THE BENCHMARK ENTRY POINT (run this first)
+
+    python benchmark/solve_pure_radial.py
+
+This is the full 7-day test on the raw past ILRS data — 1,747 SLR passes across
+Starlette, LAGEOS-1, Etalon-1, and QZS-3 (2023–2026, CRD normal points + NORAD
+TLEs bundled in `benchmark/`). The per-pass arc solve (radial wake bias × cos_z +
+along-track time bias × ṙρ, astropy TEME→ITRS frames, zero fitted parameters)
+reproduces the four solar-zone drift table to the decimal:
+
+    starlette  860 passes   993.62 / 1647.72 / 1353.38 / 1084.41 m/d   wake-noon -100.55 m   1.746e-09 /s
+    lageos1    797 passes   164.13 /  164.41 /  118.91 /  171.67 m/d   wake-noon  -24.55 m   1.618e-10 /s
+    etalon1     81 passes    45.04 /  567.12 /  388.11 /  614.41 m/d   wake-noon  -85.10 m   2.789e-10 /s
+    qzs3         9 passes        -- / 1267.75 / 11731.59 / 193098.26 m/d  wake-noon   +0.00 m   5.301e-08 /s
+
+Clone the repo, run that one command, and the table prints. Every operator can
+verify the benchmark on their own machine before spending a cent.
+
 ### Included Modules
 * `jiba_core.py` — Production drop-in station-keeping and telemetry debiasing engine (`JibaStationKeepingEngine`).
 * `step1_fuel_saver_proof.py` — Fleet propellant (Delta-V) and lifespan savings benchmark across VLEO, LEO, MEO, and GEO.
