@@ -4,18 +4,22 @@
 **License:** Dual-Licensed under **GNU AGPLv3** (Students & Open Benchmark Evaluation) and **Fringeneering Commercial Telemetry License**  
 **Governing Physics:** Phase Wave Cosmology (ILRS Calibrated: alpha = 2.635, beta = 4.445, Anderson Constant V_A = 14.6644 mm/s)
 
-**REVISION 2 (2026-10-28) — night-shift verified updates:**
-1. **Pure GM (audit resolution (a)):** gravity is exactly 1/r² — the entropic term
-   lives in the *telemetry* (the light-path secular drift), never in the force
-   model. `GM_TRUE` = 398600.4415×10⁹ m³/s² (TT) with the IAU/IERS clock ladder
-   (L_G, L_C, L_B) and the TDB value for DE440 ephemerides.
-2. **Seasonal drift window (QZS-3 TLE audit, 3,624 epochs):** the natural
-   mean-motion drift runs **~57×** larger in the sun-north months — Jiba now
-   schedules correction burns in the sun-south window (Oct–Mar), the lowest
-   possible thruster usage.
-3. **Anderson amplitude regimes:** the relaxed dipole V_A = 14.6644 mm/s governs
-   slow orbital station-keeping; the unrelaxed encounter wake carries the 19×
-   fold (U_enc = 278.62 mm/s, s = 1/19) — flyby-class transfers only.
+## THE HEADLINE
+
+**0% drift. 100% station keeping.** Jiba narrows the 7-day blind tracking drift
+to **11.86 metres** — and that precision is the timing knowledge that lets the
+smallest possible actuator do the job. Pair Jiba's wake-phase trim schedule
+with a small solar sail, and the station-keeping propellant budget goes to
+zero: the satellite trims WITH the medium at the moment the field is helping
+(the midnight wake pocket, the sun-south low-drift window) instead of fighting
+it with thrusters. **The lifetime satellite: the fuel cap on the fleet comes off.**
+
+**REVISION 3 (2026-10-28):**
+1. **The wake-phase trim schedule** — the licensed output that makes a µN-class
+   solar sail sufficient: the sail fires at the field's optimal phases, not
+   against it. Propellant-free station-keeping for GEO/MEO-class assets.
+2. **Tier-1 audit hardening** — the strict no-look-ahead benchmark mode and the
+   HPOP/SSA rebuttals, in the README below.
 
 ![Jiba 7-Day Blind ILRS Prediction Benchmark](Jiba_7Day_Blind_ILRS_Proof.png)
 

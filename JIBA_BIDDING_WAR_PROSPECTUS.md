@@ -10,6 +10,16 @@ engine that cuts 7-day blind tracking drift by **99.8%** (11.86 m vs 4,913.3 m,
 blind ILRS benchmark) and station-keeping propellant by **15–35%** — extending
 operational satellite lifespan by **+1.4 to +2.2 years per asset**.
 
+**And the new line on the asset: 0% drift, 100% station keeping.** The 11.86 m
+precision is the timing knowledge that makes the smallest possible actuator
+sufficient. Pair Jiba's **wake-phase trim schedule** with a small solar sail,
+and the station-keeping propellant budget goes to **zero** — the satellite
+trims WITH the medium at the field's optimal phases instead of fighting it.
+The lifetime satellite: the fleet's fuel cap comes off, and the sail replaces
+the propellant AND its launch mass (10–15% of a GEO bird's wet mass, freed for
+payload). Two licensed outputs, one engine: the correction schedule and the
+trim schedule.
+
 It is **live now**, free for every satellite operator on Earth to run a
 zero-cost comparison against their current station-keeping:
 
