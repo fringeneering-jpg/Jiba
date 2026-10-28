@@ -39,6 +39,26 @@ Standard orbital propagators (SGP4, GMAT, STK) assume space is a static, feature
 
 ---
 
+## The Tier-1 Audit Answers (read before your first operator call)
+
+**"You're beating SGP4, not our internal HPOP."**
+- For SSA (Space Domain Awareness): uncooperative targets and debris give you
+  ONLY radar/optical tracks — TLE/SGP4-grade state vectors, no friendly GPS.
+  Turning those into 11.86 m 7-day precision, parameter-free, means tracking
+  non-cooperative objects ~400x better than the public-grade baseline.
+- For station-keeping: numerical HPOP stacks stay accurate only by re-fitting
+  empirical drag coefficients every few hours to hide the unmodeled secular
+  drift. Jiba removes the drift deterministically, zero fitted parameters.
+
+**"Is there look-ahead leakage in the benchmark?"**
+- The SLR data is ALWAYS the test set, never the model input — in
+  `solve_pure_radial.py` and in `strict_blind_7day.py` (the strict mode builds
+  ONE TLE state at t0 and integrates forward with zero updates; the window's
+  SLR passes appear only in the final comparison loop).
+- The headline reduction (4,913 m -> 11.86 m) is the residual the standard
+  pipeline's OWN daily TLE updates leave behind — the drift an operator
+  actually sees with their normal update cadence. Run both scripts and verify.
+
 ## Quick-Start Verification Suite
 
 Run the complete verification and commercial audit suite with a single command:
