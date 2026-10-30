@@ -1,4 +1,4 @@
-﻿import subprocess, sys, os
+import subprocess, sys, os
 
 scripts = [
     "step1_fuel_saver_proof.py",
@@ -23,6 +23,17 @@ print("  [PASS] Core Module     : jiba_core.py (JibaStationKeepingEngine)")
 print("  [PASS] Visual Pitch    : Jiba_Commercial_Pitch.png (300 DPI)")
 print("  [PASS] Customer Report : Jiba_Customer_Audit_Report.txt")
 print("  [PASS] Legal Protection: LICENSE.txt (Dual AGPLv3 / Commercial)")
+print("-" * 90)
+print("  RUNNING jiba_cli.py --selftest (frictionless ingest pipeline) ...")
+res = subprocess.run([sys.executable, "jiba_cli.py", "--selftest"],
+                     capture_output=True, text=True)
+if res.returncode == 0:
+    tail = res.stdout.strip().splitlines()
+    print("\n".join(tail[-6:]))
+    print("  [PASS] jiba_cli.py    : frictionless TLE + ILRS ingest workflow")
+else:
+    print(f"  [FAIL] jiba_cli.py --selftest\n{res.stderr}")
+    sys.exit(1)
 print("=" * 90)
 print("   ALL JIBA COMMERCIAL MODULES VERIFIED (EXIT 0)")
 print("=" * 90)
