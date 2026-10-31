@@ -1,0 +1,21 @@
+﻿DUAL LICENSE & EVALUATION AGREEMENT — JIBA ORBITAL STATION-KEEPING ENGINE
+Copyright (c) 2026 Jaden John Allison (Fringeneering). All Rights Reserved.
+
+1. FREE FOR STUDENTS & ENTERPRISE BENCHMARK COMPARISON:
+   This software suite is free for students, academic researchers, and commercial aerospace
+   enterprises for the purpose of evaluating and comparing Jiba's station-keeping propellant
+   savings and orbit-prediction accuracy against their current station-keeping costs.
+
+2. COMMERCIAL TELEMETRY DATA OFFERS (UNDERLYING PHYSICS STRICTLY RETAINED):
+   Active operational use in commercial flight software, ground-station control loops, or
+   Space Situational Awareness (SSA) platforms is prohibited without a commercial agreement.
+   Fringeneering is currently fielding offers strictly for the purchase or licensing of the
+   Jiba telemetry data and station-keeping correction outputs only. No rights, title, or
+   ownership in the underlying Phase Wave Cosmology (PWC) physical theory or foundational
+   equations are offered, transferred, or sold under any circumstances.
+
+3. OPEN-SOURCE EVALUATION LICENSE (GNU AGPLv3):
+   For non-commercial student and academic use, this program is licensed under the GNU
+   Affero General Public License v3.0 (AGPLv3).
+
+Commercial Telemetry Inquiries: Jaden John Allison (Fringeneering) — fringeneering@gmail.com

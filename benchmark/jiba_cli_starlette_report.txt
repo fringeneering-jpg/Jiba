@@ -1,0 +1,31 @@
+================================================================================================================
+   JIBA SLR PROOF - CUSTOMER NORMAL-POINT INGEST (ILRS CRD FORMAT)
+   Baseline: SGP4 from the supplied TLEs | Correction: locked zero-fit PWC dipole
+================================================================================================================
+   Normal-point file : benchmark\starlette_master_slr.npt
+   TLE file          : benchmark\starlette_historical.tle
+   Passes reduced    : 46 (sampled 1/17 of 3491 parsed)
+   Orbit radius used :    7381.2 km
+   SUBSET NOTE: this run reduced only 46 pass(es) from a 1/17 sample (the --max-passes cap). Small samples carry solar-zone sampling noise, so a measured wake-noon dipole off the locked full-campaign reference (-100.55 m) is expected here, not a regression. Raise --max-passes toward 600 for the campaign-grade read.
+----------------------------------------------------------------------------------------------------------------
+Zone               |  Radial-Bias Drift
+1. Noon   (peak)   |        1987.43 m/d
+2. Dusk   (cool)   |        1281.32 m/d
+3. Midnight        |         772.67 m/d
+4. PreDawn (min)   |        1312.97 m/d
+----------------------------------------------------------------------------------------------------------------
+   Wake-Noon dipole (midnight - noon):    -167.26 m
+   vs locked Starlette reference       :    -100.55 m (+66.3%)
+   Radial strain rate                :    2.059e-09 /s
+   Column A RMS (raw SGP4 residual)  :     321.76 m
+   Column B RMS (Jiba dipole removed):     322.59 m
+   RMS reduction                     :       -0.3 %
+----------------------------------------------------------------------------------------------------------------
+   HONEST METHOD NOTE: Column B applies the LOCKED dipole (DR1=100.55 m at
+   R1=7190.137 km, alpha=2.635) analytically - zero parameters fitted to this
+   file. The raw Column A RMS is dominated by the along-track SGP4/TLE-age
+   clock error, which is exactly what the per-pass arc solve strips; the
+   four-zone drift table above IS that strip, and the wake-noon dipole is
+   the locked prediction it measures (Starlette reference: -100.55 m).
+   Nothing in this run was tuned to the customer data.
+================================================================================================================

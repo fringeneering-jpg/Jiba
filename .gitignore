@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# internal business documents - must never ship to the public repo
+JIBA_GO_TO_MARKET_PLAN.md
+JIBA_BIDDING_WAR_PROSPECTUS.md
+JIBA_INVITATION_EMAIL.md
