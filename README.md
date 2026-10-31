@@ -100,11 +100,12 @@ verify the benchmark on their own machine before spending a cent.
 ### Included Modules
 * `jiba_core.py` — Production drop-in station-keeping and telemetry debiasing engine (`JibaStationKeepingEngine`).
 * `jiba_cli.py` — **The frictionless ingest workflow** (below): feed your own Space-Track TLEs and ILRS laser-ranging files straight into the engine from the terminal.
+* `jiba.py` — The one-command entry point (`python jiba.py ingest --tle ... --crd ...`), dispatching to `jiba_cli.py`.
 * `step1_fuel_saver_proof.py` — Fleet propellant (Delta-V) and lifespan savings benchmark across VLEO, LEO, MEO, and GEO.
 * `step2_visual_pitch_chart.py` — Generates `Jiba_Commercial_Pitch.png` (300-DPI comparison of Standard Autopilot vs. Jiba Wave-Surfing).
 * `step3_live_telemetry_demo.py` — Orbit-by-orbit flight telemetry filter simulation.
-* `step4_tle_customer_audit.py` — Direct NORAD Two-Line Element (TLE) parser and client audit report generator (`Jiba_Customer_Audit_Report.txt`).
-* `step5_7day_blind_ilrs_benchmark.py` — 7-Day (168-hour) blind ILRS prediction challenge on Starlette, LARES, LARES-2, and LAGEOS-1 (`Jiba_7Day_Blind_ILRS_Proof.png`).
+* `step4_tle_customer_audit.py` — Direct NORAD Two-Line Element (TLE) parser and client audit report generator (`Jiba_Customer_Audit_Report.txt`). Feed your own catalog: `python step4_tle_customer_audit.py --tle your_catalog.3le`.
+* `step5_7day_blind_ilrs_benchmark.py` — 7-Day (168-hour) blind ILRS prediction challenge on Starlette, LARES, LARES-2, and LAGEOS-1 (`Jiba_7Day_Blind_ILRS_Proof.png`). Feed your own laser-ranging data: `python step5_7day_blind_ilrs_benchmark.py --crd your_passes.npt --tle your_history.tle` (runs the real per-pass arc solver, not the demo table).
 
 ---
 
@@ -115,7 +116,7 @@ modes, one engine, zero fitted parameters:
 
 ### Mode 1 — TLE audit (any Space-Track 3LE catalog)
 
-    python jiba_cli.py ingest --tle your_catalog.3le --out audit_report.txt
+    python jiba.py ingest --tle your_catalog.3le --out audit_report.txt
 
 Reads any NORAD/Space-Track `name + line1 + line2` catalog (single or multi-satellite,
 any size), and prints the per-satellite Jiba audit: the noon-wake dipole amplitude, the
@@ -124,7 +125,7 @@ summary. A bundled example catalog ships at `benchmark/sample_space_track_catalo
 
 ### Mode 2 — SLR proof (any ILRS CRD normal-point file)
 
-    python jiba_cli.py ingest --slr your_passes.npt --tle your_history.tle --out slr_report.txt
+    python jiba.py ingest --crd your_passes.npt --tle your_history.tle --out slr_report.txt
 
 Parses ILRS CRD normal-point files (the `h2/h4/11` record stream), propagates the
 supplied TLE history with SGP4 (the standard baseline, so the comparison is against
@@ -141,11 +142,11 @@ Unknown stations? Override with `--station LAT LON H` (geodetic degrees + metres
 bundled ILRS station table already covers the 18 major SLR sites. Speed-control with
 `--max-passes N`.
 
-    python jiba_cli.py ingest --slr their_passes.npt --tle their_history.tle --station -35.35 149.01 800
+    python jiba.py ingest --crd their_passes.npt --tle their_history.tle --station -35.35 149.01 800
 
 ### Self-test
 
-    python jiba_cli.py --selftest
+    python jiba.py --selftest
 
 Runs Mode 1 on the bundled sample catalog and Mode 2 on the bundled Starlette dataset.
 Exit 0 = the engine is healthy on this machine. (Mode 2 needs `sgp4` and `astropy`;

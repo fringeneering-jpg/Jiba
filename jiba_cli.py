@@ -17,7 +17,8 @@ MODES
                   runs the Jiba station-keeping / GM-debias / Anderson audit per satellite,
                   writes a client-ready report.
 
-  2. SLR PROOF  :  python jiba_cli.py ingest --slr <file.npt|crd> --tle <file.tle> [--out report.txt]
+  2. SLR PROOF  :  python jiba_cli.py ingest --crd <file.npt|crd> --tle <file.tle> [--out report.txt]
+                  (--slr remains as a legacy alias for --crd.)
                   Parses ILRS CRD normal-point files, propagates the supplied TLEs with
                   SGP4 (the standard baseline), computes the raw O-C residual per pass
                   (Column A) and the residual after the locked zero-fit Jiba dipole
@@ -184,7 +185,7 @@ def parse_npt_passes(npt_path, station_override=None):
     station_override: (name, ecef_km) tuple applied to EVERY pass."""
     import datetime as dt
     C0 = 299792.458
-    passes, curr, st, d0 = [], [], None, None
+    passes, curr, st, d0, start_sec = [], [], None, None, 0.0
     with open(npt_path, "r", encoding="utf-8", errors="ignore") as f:
         for line in f:
             p = line.strip().split()
@@ -203,6 +204,7 @@ def parse_npt_passes(npt_path, station_override=None):
                 try:
                     d0 = dt.datetime(int(p[2]), int(p[3]), int(p[4]),
                                      tzinfo=dt.timezone.utc)
+                    start_sec = int(p[5]) * 3600 + int(p[6]) * 60 + float(p[7])
                 except ValueError:
                     d0 = None
             elif rt == "11" and st is not None and d0 is not None and len(p) >= 3:
@@ -210,6 +212,10 @@ def parse_npt_passes(npt_path, station_override=None):
                     sec = float(p[1])
                     tof = float(p[2])
                     if 0.0 <= sec < 86400.0 and 0.0 < tof < 1.0:
+                        # port of the private parser: record-11 seconds-of-day can
+                        # wrap across midnight relative to the h4 pass start.
+                        if sec < start_sec - 43200.0:
+                            sec += 86400.0
                         t = d0 + dt.timedelta(seconds=sec)
                         curr.append((t, st, 0.5 * C0 * tof))
                 except ValueError:
@@ -416,11 +422,18 @@ def slr_reduction(npt_path, tle_path, station_override=None, max_passes=600,
     report.append(f"{'3. Midnight     ':<18} | {fmt(rate_m_d[mid]):>18}")
     report.append(f"{'4. PreDawn (min)':<18} | {fmt(rate_m_d[dawn]):>18}")
     report.append("-" * 112)
-    report.append(f"   Wake-Noon dipole (midnight - noon): {wake_noon_m:+10.2f} m")
     if np.isfinite(wake_noon_m):
+        report.append(f"   Wake-Noon dipole (midnight - noon): {wake_noon_m:+10.2f} m")
         report.append(f"   vs locked Starlette reference       : {-100.55:+10.2f} m "
                       f"({100.0 * (wake_noon_m / (-100.55) - 1.0):+.1f}%)")
-    report.append(f"   Radial strain rate                : {strain_s:12.3e} /s")
+    else:
+        report.append("   Wake-Noon dipole (midnight - noon):       n/a   "
+                      "(no noon+midnight passes reduced)")
+    if np.isfinite(strain_s):
+        report.append(f"   Radial strain rate                : {strain_s:12.3e} /s")
+    else:
+        report.append("   Radial strain rate                :       n/a   "
+                      "(no dawn/midnight passes reduced)")
     report.append(f"   Column A RMS (raw SGP4 residual)  : {np.mean(rms_a_list):10.2f} m")
     report.append(f"   Column B RMS (Jiba dipole removed): {np.mean(rms_b_list):10.2f} m")
     if np.mean(rms_a_list) > 0:
@@ -448,23 +461,25 @@ def slr_reduction(npt_path, tle_path, station_override=None, max_passes=600,
 
 def main(argv=None):
     ap = argparse.ArgumentParser(
-        prog="jiba_cli",
+        prog="jiba",
         description="JIBA frictionless ingest workflow: Space-Track TLEs and ILRS "
                     "laser-ranging files straight into the Jiba engine.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=("Examples:\n"
-                "  python jiba_cli.py ingest --tle my_catalog.3le\n"
-                "  python jiba_cli.py ingest --slr my_passes.npt --tle my_history.tle\n"
-                "  python jiba_cli.py ingest --slr my_passes.npt --tle my_history.tle "
+                "  python jiba.py ingest --tle my_catalog.3le\n"
+                "  python jiba.py ingest --crd my_passes.npt --tle my_history.tle\n"
+                "  python jiba.py ingest --crd my_passes.npt --tle my_history.tle "
                 "--station -35.35 149.01 800\n"
-                "  python jiba_cli.py --selftest\n"))
+                "  python jiba.py --selftest\n"))
     ap.add_argument("--selftest", action="store_true",
                     help="run the bundled self-test and exit")
     sub = ap.add_subparsers(dest="cmd")
 
     ing = sub.add_parser("ingest", help="ingest customer telemetry files")
     ing.add_argument("--tle", help="Space-Track 3LE catalog file")
-    ing.add_argument("--slr", help="ILRS CRD normal-point file (.npt/.crd)")
+    ing.add_argument("--crd", dest="crd_path",
+                     help="ILRS CRD normal-point file (.npt/.crd)")
+    ing.add_argument("--slr", dest="crd_path", help=argparse.SUPPRESS)
     ing.add_argument("--station", nargs=3, type=float, metavar=("LAT", "LON", "H"),
                      help="station override: geodetic latitude (deg), longitude (deg), "
                           "ellipsoidal height (m) - applies to all passes")
@@ -495,23 +510,33 @@ def main(argv=None):
         print("\n[SELFTEST] jiba_cli ingest pipeline: PASS (exit 0)")
         return 0
 
-    if args.cmd != "ingest" or (not args.tle and not args.slr):
+    if args.cmd != "ingest" or (not args.tle and not args.crd_path):
         ap.print_help()
         return 1
 
-    if args.slr and not args.tle:
-        print("ERROR: --slr mode needs the matching --tle history file for propagation.")
+    if args.crd_path and not args.tle:
+        print("ERROR: --crd mode needs the matching --tle history file for propagation.")
         return 1
 
     station_override = None
     if args.station:
         station_override = ("OVERRIDE", geodetic_to_ecef(*args.station))
 
+    if args.tle and args.crd_path:
+        banner = "\n".join([
+            "=" * 118,
+            "   JIBA UNIFIED TRACKING REPORT - CUSTOM TLE AUDIT + ILRS CRD REDUCTION",
+            "   One ingest, one report: per-satellite audit table + per-pass SLR proof.",
+            "=" * 118,
+        ])
+        print(banner)
+        out_lines.append(banner)
+
     if args.tle:
         tle_audit(read_tle_catalog(args.tle), engine, out_lines,
-                  summarize_only=bool(args.slr))
-    if args.slr:
-        slr_reduction(args.slr, args.tle, station_override=station_override,
+                  summarize_only=bool(args.crd_path))
+    if args.crd_path:
+        slr_reduction(args.crd_path, args.tle, station_override=station_override,
                       max_passes=args.max_passes, radius_km=args.radius_km,
                       out_lines=out_lines)
 

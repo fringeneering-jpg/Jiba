@@ -1,5 +1,7 @@
-﻿import os
+import os
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")     # headless-safe
 import matplotlib.pyplot as plt
 
 # ==============================================================================

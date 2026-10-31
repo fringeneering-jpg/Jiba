@@ -2,6 +2,7 @@
    JIBA COMMERCIAL ORBIT AUDIT — DIRECT NORAD TLE TELEMETRY & STATION-KEEPING ANALYSIS
    Prepared by: Jaden Allison (Fringeneering) | Engine: Jiba v0.1 (Dual License AGPLv3 / Commercial)
    Governing Physics: Phase Wave Cosmology (ILRS alpha=2.635, beta=4.445, Anderson Constant V_A=14.6644 mm/s)
+   TLE Source     : BUNDLED DEMO CATALOG (no --tle supplied) (4 satellite(s))
 ============================================================================================================================
 Satellite Name (NORAD ID)          |  Alt (km) | Inc (deg) |  Noon-Wake Dip |  GM Bias (ppb) |   Anderson Kick
 ----------------------------------------------------------------------------------------------------------------------------
