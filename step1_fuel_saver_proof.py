@@ -14,7 +14,7 @@ GAMMA1_STRAIN  = 1.746e-9          # Measured radial strain at Starlette (/s)
 ALPHA          = 2.635             # Your Wake-Noon Dipole Exponent
 BETA           = 4.445             # Your Radial Strain Exponent
 H0_FLOOR       = 2.396e-18         # Cosmic untie floor (/s)
-WAKE_RELIEF    = 0.2755            # 27.55% lower drag in Midnight Wake (from LAGEOS-1: 118.91 vs 164.13 m/d)
+WAKE_RELIEF    = 0.2755            # 27.55% lower boundary strain impedance in shade-side superposition pocket (LAGEOS-1: 118.91 vs 164.13 m/d)
 
 print("\n" + "=" * 112)
 print("   JIBA ORBITAL STATION-KEEPING ENGINE (v0.1) — COMMERCIAL FUEL & LIFESPAN SAVINGS REPORT")

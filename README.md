@@ -39,10 +39,10 @@ with it.**
 
 ## Executive Summary for Satellite Operators & Mission Control
 
-Standard orbital propagators (SGP4, GMAT, STK) assume space is a static, featureless vacuum and calibrate Earth's gravitational parameter (GM) inside local satellite eddies. In operational flight across VLEO, LEO, MEO, and GEO, this creates two major sources of propellant (Delta-V) waste and tracking drift:
+Standard orbital propagators (SGP4, GMAT, STK) assume space is a static, featureless vacuum and calibrate Earth's gravitational parameter (GM) inside the local Sun-Earth two-field superposition throat without separating conservative metric tension from reversible boundary strain. In operational flight across VLEO, LEO, MEO, and GEO, this creates two major sources of propellant (Delta-V) waste and tracking drift:
 
 1. **The Diurnal Noon-to-Midnight Dipole Trench (alpha = 2.635):** Validated across 1,657 passive Satellite Laser Ranging (SLR) passes of Starlette and LAGEOS-1, satellites experience a deterministic, reversible radial altitude dip between Solar Noon and the Midnight Wake (`-110.9 m` at 550 km VLEO, `-100.55 m` at Starlette, `-80.50 m` blind out-of-sample on LARES, `-24.55 m` at LAGEOS-1). Standard deadband autopilots misinterpret this elastic wave oscillation as secular orbital decay, firing thrusters unnecessarily against a reversible gradient.
-2. **Midnight Wake Strain Relief (beta = 4.445) & The Anderson Effect (V_A = 14.6644 mm/s):** Local medium shear strain drops by **27.6%** inside the 180-degree anti-Sun cavitation pocket, while non-orbital maneuvers (v_r != 0) experience a deterministic frame-transfer kick governed by the Anderson Constant V_A = 2 * omega_E * |dr_1| = 14.6644 mm/s.
+2. **Midnight Wake Strain Relief (beta = 4.445) & The Anderson Effect (V_A = 14.6644 mm/s):** Local two-field boundary shear strain drops by **27.6%** inside the 180-degree shade-side superposition pocket (with the LEO dipole decaying as r^-2.635 to **2.81 mm** at lunar orbit, strictly local to the Sun-Earth throat rather than an unscreened cosmic wind), while non-orbital maneuvers (v_r != 0) experience a deterministic frame-transfer kick governed by the Anderson Constant V_A = 2 * omega_E * |dr_1| = 14.6644 mm/s.
 
 **`Jiba`** is a lightweight, drop-in telemetry filter (`jiba_core.py`) that sits between navigation sensors and the thruster controller:
 * **Strips the elastic Noon-Wake dipole** from deadband boxes (eliminating false-alarm thruster burns).
@@ -154,6 +154,13 @@ bundled ILRS station table already covers the 18 major SLR sites. Speed-control 
 Runs Mode 1 on the bundled sample catalog and Mode 2 on the bundled Starlette dataset.
 Exit 0 = the engine is healthy on this machine. (Mode 2 needs `sgp4` and `astropy`;
 Mode 1 needs only `numpy`.)
+
+---
+
+## Companion Interplanetary Engine — Wurral
+
+For 15-body relativistic interplanetary propagation (`Mercury` to `Sedna` over 10-to-50-year unpinned arcs), equatorial-flattening planetary spin-lock (`1.20%` mean residual), subatomic Master EOS closure, and dynamic $1/r^2$ (`1/3` outbound : `2/3` inbound) deep-space link budgets, see the companion repository:
+- **Wurral:** https://github.com/fringeneering-jpg/Wurral
 
 ---
 
